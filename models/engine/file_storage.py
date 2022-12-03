@@ -35,25 +35,15 @@ class FileStorage:
             json.dump(obj_dict, FILE)
 
     def reload(self):
-        """Loads storage dictionary from file"""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
-        classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                  }
+        """
+        deserializes the JSON file to __objects
+        does nothing if file is not found
+        """
         try:
-            temp = {}
-            with open(FileStorage.__file_path, 'r') as f:
-                temp = json.load(f)
-                for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+            with open(FileStorage.__file_path, "r") as read_file:
+                dummy_dict = json.load(read_file)
+                for k, v in dummy_dict.items():
+                    FileStorage.__objects[k] = eval(v['__class__'])(**v)
         except FileNotFoundError:
             pass
+
