@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This module defines a class to manage file storage for hbnb clone"""
 import json
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
@@ -69,3 +70,4 @@ class FileStorage:
         key_name = obj_class_name + "." + obj_id
 
         del FileStorage.__objects[key_name]
+        models.storage.save()
