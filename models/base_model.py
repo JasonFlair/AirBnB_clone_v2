@@ -64,6 +64,7 @@ class BaseModel:
         dictionary['updated_at'] = self.updated_at.isoformat()
 
         if '_sa_instance_state' in dictionary.keys():
+            print("HAHAHAHAHAHAHA")
             del dictionary['_sa_instance_state']
         return dictionary
 
