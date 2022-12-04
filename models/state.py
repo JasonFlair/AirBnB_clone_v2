@@ -2,7 +2,7 @@
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
 from sqlalchemy import MetaData, Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 import models
 from models.city import City
 
@@ -13,9 +13,8 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship(
         "City",
-        back_populates="state",
+        backref="states",
         cascade="all, delete, delete-orphan",
-        passive_deletes=True,
     )
 
     @property
