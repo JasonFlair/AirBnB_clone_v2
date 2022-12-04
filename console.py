@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
             kw = {}
             for arg in arg_list[1:]:  # other arguments apart from class
                 # gets the key word argument
-                keyword_split = arg.split("=") #split the keyword argument
+                keyword_split = arg.split("=")  # split the keyword argument
                 keyword_split[1] = eval(keyword_split[1])
                 if type(keyword_split[1]) is str:
                     keyword_split[1] = keyword_split[1].replace("_", " ").replace('"', '\\"')
@@ -216,8 +216,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             for k, v in storage.all(self.classes[args]).items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
+                print_list.append(str(v))
         else:
             for k, v in storage.all().items():
                 print_list.append(str(v))
