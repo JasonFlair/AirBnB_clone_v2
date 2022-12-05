@@ -29,4 +29,31 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = []
 
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
+        reviews = relationship("Review", backref="place", cascade="all, delete, delete-orphan")
+        amenities = relationship("Amenity", backref='places', secondary=place_amenity, viewonly=False)
+    else:
+        @property
+        def reviews(self):
+            """getter attribute to get the reviews of a place"""
+            reviews_for_this_city = []
+            for review_obj in models.storage.all(Review).values():  # returns all review objects
+                if review_obj.place_id == self.id:
+                    reviews_for_this_city.append(review_obj)
 
+            return reviews_for_this_city
+
+        @property
+        def amenities(self):
+            """returns amenities for this place"""
+            amenity_ids_for_this_place = []
+            for amenity in models.storage.all(Amenity):
+                if amenity.id in self.amenity_ids:
+                    amenity_ids_for_this_place.append(amenity)
+            return amenity_ids_for_this_place
+
+        @amenities.setter
+        def amenities(self, obj):
+            """adds id of object to the amenity_ids array"""
+            if type(obj) == Amenity:
+                self.amenity_ids.append(obj.id)
