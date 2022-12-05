@@ -29,4 +29,4 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = []
 
-    if getenv("HBNB_TYPE_STORAGE") == 'db':
+
