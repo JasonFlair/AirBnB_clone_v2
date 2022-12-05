@@ -70,4 +70,3 @@ class FileStorage:
         key_name = obj_class_name + "." + obj_id
 
         del FileStorage.__objects[key_name]
-        models.storage.save()
