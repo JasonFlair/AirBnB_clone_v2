@@ -4,7 +4,7 @@ import models
 from models.review import Review
 from models.amenity import Amenity
 from models.base_model import BaseModel, Base
-from sqlalchemy import MetaData, Column, Integer, String, ForeignKey, Table
+from sqlalchemy import MetaData, Column, Integer, String, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
 from os import getenv
 
