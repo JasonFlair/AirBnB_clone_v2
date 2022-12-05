@@ -3,6 +3,9 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import MetaData, Column, Integer, String
 from sqlalchemy.orm import relationship, backref
+from models.place import Place
+from models.review import Review
+from sqlalchemy.ext.declarative import declarative_base
 
 
 class User(BaseModel, Base):
