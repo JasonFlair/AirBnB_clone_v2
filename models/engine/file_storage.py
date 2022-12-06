@@ -64,6 +64,7 @@ class FileStorage:
     def delete(self, obj=None):
         """
         delete obj from __objects
+        :param obj: object to be deleted
         """
         obj_class_name = obj.__class__.__name__
         obj_id = obj.id
