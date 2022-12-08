@@ -124,7 +124,8 @@ class HBNBCommand(cmd.Cmd):
                 keyword_split = arg.split("=")  # split the keyword argument
                 keyword_split[1] = eval(keyword_split[1])
                 if type(keyword_split[1]) is str:
-                    keyword_split[1] = keyword_split[1].replace("_", " ").replace('"', '\\"')
+                    keyword_split[1] = keyword_split[1].replace(
+                        "_", " ").replace('"', '\\"')
                     # replace all underscores with spaces
                 kw[keyword_split[0]] = keyword_split[1]
         except SyntaxError:
