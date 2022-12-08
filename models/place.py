@@ -4,13 +4,16 @@ import models
 from models.review import Review
 from models.amenity import Amenity
 from models.base_model import BaseModel, Base
-from sqlalchemy import MetaData, Column, Integer, String, Float, ForeignKey, Table
+from sqlalchemy import MetaData, Column, Integer
+from sqlalchemy import StringFloat, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
 from os import getenv
 
 place_amenity = Table('place_amenity', Base.metadata,
-                      Column('place_id', String(60), ForeignKey('places.id'), nullable=False),
-                      Column('amenity_id', String(60), ForeignKey('amenities.id'), nullable=False),
+                      Column('place_id', String(60),
+                             ForeignKey('places.id'), nullable=False),
+                      Column('amenity_id', String(60),
+                             ForeignKey('amenities.id'), nullable=False)
                       )
 
 
@@ -31,14 +34,18 @@ class Place(BaseModel, Base):
     amenity_ids = []
 
     if getenv("HBNB_TYPE_STORAGE") == 'db':
-        reviews = relationship("Review", backref="place", cascade="all, delete, delete-orphan")
-        amenities = relationship("Amenity", back_populates='place_amenities', secondary=place_amenity, viewonly=False)
+        reviews = relationship("Review", backref="place",
+                               cascade="all, delete, delete-orphan")
+        amenities = relationship("Amenity",
+                                 back_populates='place_amenities',
+                                 secondary=place_amenity, viewonly=False)
     else:
         @property
         def reviews(self):
             """getter attribute to get the reviews of a place"""
             reviews_for_this_city = []
-            for review_obj in models.storage.all(Review).values():  # returns all review objects
+            for review_obj in models.storage.all(Review).values():
+                # returns all review objects
                 if review_obj.place_id == self.id:
                     reviews_for_this_city.append(review_obj)
 

@@ -66,8 +66,9 @@ class FileStorage:
         delete obj from __objects
         :param obj: object to be deleted
         """
-        obj_class_name = obj.__class__.__name__
-        obj_id = obj.id
-        key_name = obj_class_name + "." + obj_id
+        if obj:
+            obj_class_name = obj.__class__.__name__
+            obj_id = obj.id
+            key_name = obj_class_name + "." + obj_id
 
-        del FileStorage.__objects[key_name]
+            del FileStorage.__objects[key_name]
