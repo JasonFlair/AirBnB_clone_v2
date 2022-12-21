@@ -14,7 +14,7 @@ def do_pack():
     tarfile_name = "web_static_" + str(datetime.datetime.now().year) + str(datetime.datetime.now().month) + str(
         datetime.datetime.now().day) + str(datetime.datetime.now().minute) + str(
         datetime.datetime.now().second) + ".tgz"
-    command = "tar czvf {} /versions".format(tarfile_name)
+    command = "tar -C versions -czvf {} web_static/".format(tarfile_name)
 
     # create the tar file
     with settings(warn_only=True):
@@ -23,5 +23,5 @@ def do_pack():
         if the command returns a non-zero exit code."""
         local_command = local(command)
         if local_command.failed:
-            local("mkdir /versions")
+            local("mkdir versions")
             local(command)
