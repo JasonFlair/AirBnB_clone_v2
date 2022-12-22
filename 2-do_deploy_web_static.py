@@ -32,6 +32,7 @@ def do_deploy(archive_path):
             tarfile_name, basename)).failed is True:
         return False
     run("rm /tmp/{}".format(tarfile_name))
+    if run("mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/".format(basename, basename))
     if run("rm /data/web_static/current").failed is True:
         return False
     if run("ln -s /data/web_static/releases/{} /data/web_static/current").failed is True:
