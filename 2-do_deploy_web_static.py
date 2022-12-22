@@ -6,7 +6,6 @@ servers, using the function do_deploy:
 from fabric.api import *
 import tarfile
 import os.path
-import env
 
 env.hosts = ['100.25.41.245 web-01', '54.172.27.227 web-02']
 
