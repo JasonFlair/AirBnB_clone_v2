@@ -29,6 +29,7 @@ server {
    index index.html;
    location /hbnb_static {
       alias /data/web_static/current;
+      index index.html index.htm;
    }
    location /redirect_me {
       return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
