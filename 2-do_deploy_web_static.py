@@ -11,6 +11,12 @@ env.hosts = ['100.25.41.245', '54.172.27.227']
 
 
 def do_deploy(archive_path):
+    """
+     a Fabric script (based on the file 1-pack_web_static.py) that distributes an archive to your web servers,
+     using the function do_deploy:
+     Args: archive_path the path to the archive file
+     Returns: True if verything works, no errors
+    """
     filename, file_extension = os.path.splitext(archive_path)
     basename = os.path.basename(filename)
     tarfile_name = basename + ".tgz"
