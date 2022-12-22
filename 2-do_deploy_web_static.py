@@ -25,7 +25,7 @@ def do_deploy(archive_path):
         return False
 
     print("Uploading the project archive")
-    if put("archive_path, /tmp/").failed is True:
+    if put("archive_path, /tmp/{}".format(tarfile_name)).failed is True:
         return False
     run("mkdir -p /data/web_static/releases/{}".format(basename))
     if run("tar -xzvf /tmp/{} -C /data/web_static/releases/{}".format(
