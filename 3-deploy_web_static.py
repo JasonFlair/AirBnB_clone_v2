@@ -2,7 +2,7 @@
 # a fabfile that creates and distributes an archive to your web
 # servers, using the function deploy:
 import os.path
-from datetime import datetime
+import datetime
 from fabric.api import env
 from fabric.api import local
 from fabric.api import put
