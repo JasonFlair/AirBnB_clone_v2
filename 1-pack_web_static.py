@@ -26,4 +26,4 @@ def do_pack():
     if local_command.failed is True:
         return None
     else:
-        return "version/{}".format(tarfile_name)
+        return "versions/{}".format(tarfile_name)
