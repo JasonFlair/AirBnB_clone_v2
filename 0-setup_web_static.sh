@@ -14,8 +14,7 @@ mkdir /data/web_static/releases/test/
 echo "hello jason" > /data/web_static/releases/test/index.html
 
 # removes and and recreates symbolic link every time the script is ran
-rm /data/web_static/current
-ln -s /data/web_static/releases/test/ /data/web_static/current
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 # Give ownership of the /data/ folder to the ubuntu user AND group 
 chown -R ubuntu:ubuntu /data/
 
@@ -39,4 +38,4 @@ server {
       internal;
    }
 }" > /etc/nginx/sites-available/default
-nginx -s reload
+service nginx restart
