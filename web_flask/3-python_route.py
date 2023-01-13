@@ -26,11 +26,11 @@ def c_text(text= "is cool"):
     spaced_text = text.replace("_", " ")
     return 'C %s' % escape(spaced_text)
 
-@app.route('/python/(<text>)', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
     """returns Python followed by given text, else followed by is cool"""
     spaced_text = text.replace("_", " ")
-     return 'Python %s' % escape(spaced_text)
+     return 'Python {}'.format(spaced_text)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
