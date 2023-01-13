@@ -31,7 +31,7 @@ def python_text(text="is cool"):
     """returns Python followed by given text, else followed by is cool
        :param text: the text to be returned after Python"""
     spaced_text = text.replace("_", " ")
-     return 'Python {}'.format(spaced_text)
+    return 'Python {}'.format(spaced_text)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
