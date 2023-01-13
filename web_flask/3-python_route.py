@@ -19,7 +19,12 @@ def hbnb():
     return 'HBNB'
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
-    return 'C %s' % escape(text)
+    spaced_text = text.replace("_", " ")
+    return 'C %s' % escape(spaced_text)
+@app.route('/python/(<text>)', strict_slashes=False)
+def python_text(text="is cool"):
+    spaced_text = text.replace("_", " ")
+     return 'Python %s' % escape(spaced_text)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
