@@ -22,9 +22,9 @@ def hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text= "is cool"):
-    """returns C followed by iven text, else followed by is cool"""
+    """returns C followed by given text, else followed by is cool"""
     spaced_text = text.replace("_", " ")
-    return 'C %s' % escape(spaced_text)
+    return 'C {}'.format(spaced_text)
 
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
