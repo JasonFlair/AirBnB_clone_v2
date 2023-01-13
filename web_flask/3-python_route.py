@@ -28,7 +28,8 @@ def c_text(text= "is cool"):
 
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
-    """returns Python followed by given text, else followed by is cool"""
+    """returns Python followed by given text, else followed by is cool
+       :param text: the text to be returned after Python"""
     spaced_text = text.replace("_", " ")
      return 'Python {}'.format(spaced_text)
 
