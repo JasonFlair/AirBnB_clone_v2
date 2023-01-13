@@ -11,13 +11,17 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello():
+    """simply returns hello hbnb"""
     return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
+    """simply returns hbnb"""
     return 'HBNB'
+
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
+    """returns C followed by specified text"""
     spaced_text = text.replace("_", " ")
     return 'C %s' % escape(spaced_text)
 

@@ -12,17 +12,23 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello():
+    """simply returns Hello HBNB"""
     return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
+    """simply returns HBNB"""
     return 'HBNB'
+
 @app.route('/c/<text>', strict_slashes=False)
-def c_text(text):
+def c_text(text= "is cool"):
+    """returns C followed by iven text, else followed by is cool"""
     spaced_text = text.replace("_", " ")
     return 'C %s' % escape(spaced_text)
+
 @app.route('/python/(<text>)', strict_slashes=False)
 def python_text(text="is cool"):
+    """returns Python followed by given text, else followed by is cool"""
     spaced_text = text.replace("_", " ")
      return 'Python %s' % escape(spaced_text)
 
