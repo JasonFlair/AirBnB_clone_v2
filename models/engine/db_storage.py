@@ -47,14 +47,14 @@ class DBStorage:
             for instance in query:
                 key_name = cls.__name__ + "." + instance.id
                 this_dict[key_name] = instance
-                return this_dict
+            return this_dict
         else:
             for class_name in self.arg_classes:
                 query = self.__session.query(class_name)
                 for instance in query:
                     key_name = class_name.__name__ + "." + instance.id
                     this_dict[key_name] = instance
-                    return this_dict
+            return this_dict
 
     def new(self, obj):
         """ adds a new object """
@@ -67,6 +67,7 @@ class DBStorage:
     def delete(self, obj=None):
         """ deletes object"""
         self.__session.delete()
+        self.__session.commit()
 
     def reload(self):
         """reload the instances from memory"""
