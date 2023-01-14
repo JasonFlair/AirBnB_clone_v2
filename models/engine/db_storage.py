@@ -66,8 +66,10 @@ class DBStorage:
 
     def delete(self, obj=None):
         """ deletes object"""
-        self.__session.delete()
-        self.__session.commit()
+        if obj is not None:
+            self.__session.delete(obj)
+            self.__session.commit()
+
 
     def reload(self):
         """reload the instances from memory"""
