@@ -15,8 +15,10 @@ def state_list():
 @app.route('/states/<id>', strict_slashes=False)
 def state_cities(id):
     """ returns a state list with cities, sorted by name """
-    state = storage.get(State, id)
-    return render_template('9-states.html', state=state)
+    for state in storage.all(State).values():
+        if state.id == id:
+            return render_template('9-states.html', state=state)
+    return render_template("9-states.html")
 
 @app.teardown_appcontext
 def calls_close(exc):
