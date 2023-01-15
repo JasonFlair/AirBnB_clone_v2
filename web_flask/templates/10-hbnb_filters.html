@@ -36,11 +36,13 @@
         </DIV><DIV class="amenities">
           <H3>Amenities</H3>
           <H4>&nbsp;</H4>
-          <UL class="popover">
-          {% for amenity in amenities|sort(attribute="name") %}
-            <LI>{{ amenity.name }}</LI>
-          {% endfor %}
-          </UL>
+          <DIV class="popover">
+            <UL>
+                {% for amenity in amenities|sort(attribute="name") %}
+                  <LI>{{ amenity.name }}</LI>
+                {% endfor %}
+            </UL>
+          </DIV>
         </DIV>
         <BUTTON>Search</BUTTON>
       </SECTION>
