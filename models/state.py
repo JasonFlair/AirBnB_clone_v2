@@ -25,7 +25,7 @@ class State(BaseModel, Base):
          A getter attribute 'cities' that returns the list of City
          instances with state_id equals to the current State.id
         """
-        if hasattr(self, 'cities'):
+        if getenv("HBNB_TYPE_STORAGE") == 'db':
             return self.cities
         else:
             list_of_cities = []
