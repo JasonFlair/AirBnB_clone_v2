@@ -12,7 +12,8 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
-    cities = relationship(
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
+        cities = relationship(
             "City",
             backref="state",
             cascade="all, delete, delete-orphan",
@@ -24,9 +25,11 @@ class State(BaseModel, Base):
          A getter attribute 'cities' that returns the list of City
          instances with state_id equals to the current State.id
         """
-        list_of_cities = []
-
-        for city in models.storage.all(City):
-            if city.state_id == self.id:
-                list_of_cities.append(city)
-        return list_of_cities
+        if hasattr(self, 'cities'):
+            return self.cities
+        else:
+            list_of_cities = []
+            for city in models.storage.all(City):
+                if city.state_id == self.id:
+                    list_of_cities.append(city)
+            return list_of_cities
