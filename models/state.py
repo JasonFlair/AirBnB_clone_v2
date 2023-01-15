@@ -25,8 +25,10 @@ class State(BaseModel, Base):
          A getter attribute 'cities' that returns the list of City
          instances with state_id equals to the current State.id
         """
+        if getenv("HBNB_TYPE_STORAGE") == 'db':
+            return session.query(City).filter_by(state_id=self.id).all()
         list_of_cities = []
-        for city in City.all():
+        for city in models.storage.all(City):
             if city.state_id == self.id:
                 list_of_cities.append(city)
         return list_of_cities
