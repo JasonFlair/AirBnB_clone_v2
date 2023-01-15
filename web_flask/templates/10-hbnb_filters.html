@@ -21,7 +21,7 @@
           <H4>&nbsp;</H4>
           <DIV class="popover">
             <UL>
-            {% for state in states.|sort(attribute="name") %}
+            {% for state in states|sort(attribute="name") %}
               <LI><STRONG>{{ state.name }}</STRONG>
                 <UL>
                 {% for city in state.cities|sort(attribute="name") %}
